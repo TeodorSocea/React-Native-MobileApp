@@ -1,5 +1,12 @@
 import MainService from "./mainService";
-import { View, StyleSheet, Text, Animated, Button } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Animated,
+  Button,
+  TouchableHighlight,
+} from "react-native";
 
 import React from "react";
 
@@ -17,6 +24,7 @@ class ImageLoader extends React.Component {
   };
 
   render() {
+    console.log(this.props.style);
     return (
       <>
         <Animated.Image
@@ -53,12 +61,13 @@ export default class LoadingScreen extends React.Component {
   }
 
   render() {
+    const styles = this.props.style;
     return (
-      <View style={stlyes.body}>
+      <View style={styles}>
         <Text>Pog</Text>
         {this.state.loaded == true ? (
           <>
-            <ImageLoader style={{ aspectRatio: 1, resizeMode: "contain" }} />
+            <ImageLoader style={{ margin: "-15%" }} />
           </>
         ) : (
           <Text>Loading</Text>
