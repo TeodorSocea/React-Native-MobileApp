@@ -36,8 +36,8 @@ class ImageLoader extends React.Component {
               transform: [
                 {
                   scale: this.state.opacity.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0.1, 0.5],
+                    inputRange: [0, 100],
+                    outputRange: [0.1, 1],
                   }),
                 },
               ],
@@ -67,7 +67,7 @@ export default class LoadingScreen extends React.Component {
         <Text>Pog</Text>
         {this.state.loaded == true ? (
           <>
-            <ImageLoader style={{ margin: "-15%" }} />
+            <ImageLoader style={{ resizeMode: "contain" }} />
           </>
         ) : (
           <Text>Loading</Text>
