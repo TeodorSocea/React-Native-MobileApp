@@ -2,12 +2,13 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import LoadingScreen from "./components/loadingscreen";
+import SignUp from "./components/sigupscreen";
 
 export default function App() {
   return (
     <>
       <StatusBar hidden backgroundColor="blue" />
-      <LoadingScreen style={styles.loading}></LoadingScreen>
+      <SignUp />
     </>
   );
 }

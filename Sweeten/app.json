@@ -6,9 +6,9 @@
     "orientation": "portrait",
     "icon": "./assets/sweeten_logo.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/sweeten_logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#d4062c"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
