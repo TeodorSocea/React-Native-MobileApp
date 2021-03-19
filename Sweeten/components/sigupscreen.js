@@ -7,6 +7,7 @@ import {
   Touchable,
   Button,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 export default class SignUp extends Component {
@@ -31,6 +32,10 @@ export default class SignUp extends Component {
             duration={1500}
           >
             <Text style={styles.logotext}>Sign up!</Text>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <TextInput placeholder="email adress" style={styles.input} />
+              <TextInput placeholder="password" style={styles.input} />
+            </View>
             <TouchableOpacity
               onPress={() => {
                 this.setState({ signup: false, signin: true });
@@ -107,4 +112,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  input: {},
 });
