@@ -4,18 +4,31 @@ import {
   StyleSheet,
   Text,
   View,
-  Touchable,
-  Button,
   TouchableOpacity,
   TextInput,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faUser,
+  faKey,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 export default class SignUp extends Component {
   state = {
     signup: true,
     signin: false,
+    showPass: false,
   };
+
   render() {
+    const [data, setData] = React.useState({
+      email: "",
+      password: "",
+      check_textInputChange: false,
+      secureTextEntry: true,
+    });
     return (
       <View style={styles.container}>
         <Animatable.Image
@@ -28,13 +41,83 @@ export default class SignUp extends Component {
         {this.state.signup && (
           <Animatable.View
             style={styles.signup}
-            animation="fadeInRightBig"
+            animation="fadeInUpBig"
             duration={1500}
           >
             <Text style={styles.logotext}>Sign up!</Text>
-            <View style={{ justifyContent: "center", alignItems: "center" }}>
-              <TextInput placeholder="email adress" style={styles.input} />
-              <TextInput placeholder="password" style={styles.input} />
+            <View
+              style={{
+                justifyContent: "space-around",
+                width: width * 0.9,
+                marginVertical: height * 0.02,
+                marginLeft: width * 0.05,
+                marginRight: width * 0.05,
+                fontSize: height * 0.01,
+              }}
+            >
+              <Text style={{ fontSize: height * 0.025, fontWeight: "bold" }}>
+                Email
+              </Text>
+              <View style={styles.action}>
+                <FontAwesomeIcon
+                  icon={faUser}
+                  style={{ marginRight: width * 0.02 }}
+                />
+                <TextInput
+                  placeholder="Your email adress"
+                  style={styles.input}
+                />
+              </View>
+              <Text style={{ fontSize: height * 0.025, fontWeight: "bold" }}>
+                Password
+              </Text>
+              <View style={styles.action}>
+                <FontAwesomeIcon
+                  icon={faKey}
+                  style={{ marginRight: width * 0.02 }}
+                />
+                <TextInput
+                  placeholder="Your password"
+                  style={styles.input}
+                  secureTextEntry={!this.state.showPass}
+                />
+                <TouchableOpacity
+                  onPress={() =>
+                    this.setState({ showPass: !this.state.showPass })
+                  }
+                >
+                  {this.state.showPass ? (
+                    <FontAwesomeIcon icon={faEye} size={height * 0.04} />
+                  ) : (
+                    <FontAwesomeIcon icon={faEyeSlash} size={height * 0.04} />
+                  )}
+                </TouchableOpacity>
+              </View>
+              <Text style={{ fontSize: height * 0.025, fontWeight: "bold" }}>
+                Repeat Password
+              </Text>
+              <View style={styles.action}>
+                <FontAwesomeIcon
+                  icon={faKey}
+                  style={{ marginRight: width * 0.02 }}
+                />
+                <TextInput
+                  placeholder="Confirm your password"
+                  style={styles.input}
+                  secureTextEntry={!this.state.showPass}
+                />
+                <TouchableOpacity
+                  onPress={() =>
+                    this.setState({ showPass: !this.state.showPass })
+                  }
+                >
+                  {this.state.showPass ? (
+                    <FontAwesomeIcon icon={faEye} size={height * 0.04} />
+                  ) : (
+                    <FontAwesomeIcon icon={faEyeSlash} size={height * 0.04} />
+                  )}
+                </TouchableOpacity>
+              </View>
             </View>
             <TouchableOpacity
               onPress={() => {
@@ -43,7 +126,7 @@ export default class SignUp extends Component {
               style={styles.button}
             >
               <View>
-                <Text>Press Me</Text>
+                <Text>Create Account</Text>
               </View>
             </TouchableOpacity>
           </Animatable.View>
@@ -52,7 +135,7 @@ export default class SignUp extends Component {
         {this.state.signin && (
           <Animatable.View
             style={styles.signup}
-            animation="fadeInLeftBig"
+            animation="fadeInUpBig"
             duration={1500}
           >
             <Text style={styles.logotext}>Sign in!</Text>
@@ -112,5 +195,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  input: {},
+  input: {
+    fontSize: height * 0.025,
+    flex: 1,
+    marginRight: width * 0.05,
+  },
+  action: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderColor: "black",
+    marginBottom: height * 0.02,
+  },
 });

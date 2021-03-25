@@ -3,12 +3,14 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import LoadingScreen from "./components/loadingscreen";
 import SignUp from "./components/sigupscreen";
+import * as SignUpHooks from "./components/signupHook";
 
 export default function App() {
+  const screen = SignUpHooks();
   return (
     <>
-      <StatusBar hidden backgroundColor="blue" />
-      <SignUp />
+      <StatusBar hidden />
+      <View>{screen}</View>
     </>
   );
 }
