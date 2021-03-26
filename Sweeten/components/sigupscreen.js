@@ -15,20 +15,19 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "./context";
+
 export default class SignUp extends Component {
   state = {
     signup: true,
     signin: false,
     showPass: false,
+    email: "",
+    password: "",
+    confirmPassword: "",
   };
 
   render() {
-    const [data, setData] = React.useState({
-      email: "",
-      password: "",
-      check_textInputChange: false,
-      secureTextEntry: true,
-    });
     return (
       <View style={styles.container}>
         <Animatable.Image
@@ -66,6 +65,9 @@ export default class SignUp extends Component {
                 <TextInput
                   placeholder="Your email adress"
                   style={styles.input}
+                  onChangeText={(text) => {
+                    this.setState({ email: text });
+                  }}
                 />
               </View>
               <Text style={{ fontSize: height * 0.025, fontWeight: "bold" }}>
@@ -80,6 +82,7 @@ export default class SignUp extends Component {
                   placeholder="Your password"
                   style={styles.input}
                   secureTextEntry={!this.state.showPass}
+                  onChangeText={(text) => this.setState({ password: text })}
                 />
                 <TouchableOpacity
                   onPress={() =>
@@ -105,6 +108,9 @@ export default class SignUp extends Component {
                   placeholder="Confirm your password"
                   style={styles.input}
                   secureTextEntry={!this.state.showPass}
+                  onChangeText={(text) =>
+                    this.setState({ confirmPassword: text })
+                  }
                 />
                 <TouchableOpacity
                   onPress={() =>
@@ -121,13 +127,23 @@ export default class SignUp extends Component {
             </View>
             <TouchableOpacity
               onPress={() => {
-                this.setState({ signup: false, signin: true });
+                console.log(this.state);
               }}
               style={styles.button}
             >
               <View>
                 <Text>Create Account</Text>
               </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({ showPass: false, signup: false, signin: true });
+              }}
+              style={{ marginTop: height * 0.03 }}
+            >
+              <Text style={{ color: "#0c6aad" }}>
+                Already have an account? Sign in!
+              </Text>
             </TouchableOpacity>
           </Animatable.View>
         )}
@@ -139,15 +155,78 @@ export default class SignUp extends Component {
             duration={1500}
           >
             <Text style={styles.logotext}>Sign in!</Text>
+            <View
+              style={{
+                justifyContent: "space-around",
+                width: width * 0.9,
+                marginVertical: height * 0.02,
+                marginLeft: width * 0.05,
+                marginRight: width * 0.05,
+                fontSize: height * 0.01,
+              }}
+            >
+              <Text style={{ fontSize: height * 0.025, fontWeight: "bold" }}>
+                Email
+              </Text>
+              <View style={styles.action}>
+                <FontAwesomeIcon
+                  icon={faUser}
+                  style={{ marginRight: width * 0.02 }}
+                />
+                <TextInput
+                  placeholder="Existing email adress"
+                  style={styles.input}
+                  onChangeText={(text) => {
+                    this.setState({ email: text });
+                  }}
+                />
+              </View>
+              <Text style={{ fontSize: height * 0.025, fontWeight: "bold" }}>
+                Password
+              </Text>
+              <View style={styles.action}>
+                <FontAwesomeIcon
+                  icon={faKey}
+                  style={{ marginRight: width * 0.02 }}
+                />
+                <TextInput
+                  placeholder="Existing password"
+                  style={styles.input}
+                  secureTextEntry={!this.state.showPass}
+                  onChangeText={(text) => this.setState({ password: text })}
+                />
+                <TouchableOpacity
+                  onPress={() =>
+                    this.setState({ showPass: !this.state.showPass })
+                  }
+                >
+                  {this.state.showPass ? (
+                    <FontAwesomeIcon icon={faEye} size={height * 0.04} />
+                  ) : (
+                    <FontAwesomeIcon icon={faEyeSlash} size={height * 0.04} />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
             <TouchableOpacity
               onPress={() => {
-                this.setState({ signin: false, signup: true });
+                console.log(this.state);
               }}
               style={styles.button}
             >
               <View>
-                <Text>Press Me too</Text>
+                <Text>Log into account</Text>
               </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({ showPass: false, signup: true, signin: false });
+              }}
+              style={{ marginTop: height * 0.03 }}
+            >
+              <Text style={{ color: "#0c6aad" }}>
+                Don't have an account? Sign up!
+              </Text>
             </TouchableOpacity>
           </Animatable.View>
         )}
