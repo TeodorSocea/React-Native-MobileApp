@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/sweeten_logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ts.sweeten"
     },
     "web": {
       "favicon": "./assets/favicon.png"
